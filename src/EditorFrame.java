@@ -56,6 +56,13 @@ public class EditorFrame extends JFrame implements ActionListener{
         saveItem.addActionListener(this);
         exitItem.addActionListener(this);
 
+        //Close on pressing the "X" button
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                confirmExit();
+            }
+        });
     }
 
     private void openOrSaveFile(int option) {
@@ -100,5 +107,4 @@ public class EditorFrame extends JFrame implements ActionListener{
         if (e.getSource() == openItem) openOrSaveFile(1);
         if (e.getSource() == saveItem) openOrSaveFile(2);
     }
-}
 }
