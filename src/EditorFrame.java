@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-public class EditorFrame extends JFrame implements ActionListener{
+public class EditorFrame extends JFrame implements ActionListener {
     protected JTextArea textArea = new JTextArea(); //text area initialization
     protected JMenuBar menuBar = new JMenuBar(); //menu initialization
     JScrollPane scrollPane = new JScrollPane(textArea); //scrollBar
@@ -67,7 +67,11 @@ public class EditorFrame extends JFrame implements ActionListener{
 
     private void openOrSaveFile(int option) {
         JFileChooser fileChooser = new JFileChooser();
-        int returnValue = fileChooser.showOpenDialog(this);
+        int returnValue;
+        if (option == 1) {
+            returnValue = fileChooser.showOpenDialog(this);
+        } else
+            returnValue = fileChooser.showSaveDialog(this);
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
@@ -77,12 +81,16 @@ public class EditorFrame extends JFrame implements ActionListener{
                 } catch (IOException e) {
                     JOptionPane.showMessageDialog(this, "Error opening file", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            } else
+            } else {
+                file = new File(file.getAbsolutePath() + ".txt"); //putting a .txt extension
+
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
                     textArea.write(writer);
+                    JOptionPane.showMessageDialog(this, "File saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 } catch (IOException e) {
                     JOptionPane.showMessageDialog(this, "Error saving file", "Error", JOptionPane.ERROR_MESSAGE);
                 }
+            }
         }
     }
 
