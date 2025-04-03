@@ -45,20 +45,9 @@ public class EditorFrame extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == exitItem) {
-            JLabel messageLabel = new JLabel("Are you sure you want to exit?", SwingConstants.CENTER);
-
-            int response = JOptionPane.showConfirmDialog(
-                    null,
-                    messageLabel,
-                    "Confirm Exit",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.PLAIN_MESSAGE
-            );
-
-            if (response == JOptionPane.YES_OPTION) {
-                System.exit(0);
-            }
-        }
+        if (e.getSource() == exitItem) confirmExit();
+        if (e.getSource() == openItem) openOrSaveFile(1);
+        if (e.getSource() == saveItem) openOrSaveFile(2);
     }
+}
 }
