@@ -64,6 +64,21 @@ public class EditorFrame extends JFrame implements ActionListener{
         }
     }
 
+    private void confirmExit() {
+        JLabel messageLabel = new JLabel("Are you sure you want to exit?", SwingConstants.CENTER);
+        int response = JOptionPane.showConfirmDialog(
+                null,
+                messageLabel,
+                "Confirm Exit",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.PLAIN_MESSAGE
+        );
+
+        if (response == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == exitItem) confirmExit();
