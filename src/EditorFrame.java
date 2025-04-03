@@ -4,21 +4,24 @@ import java.awt.event.*;
 import java.io.*;
 
 public class EditorFrame extends JFrame implements ActionListener{
+    protected JTextArea textArea = new JTextArea(); //text area initialization
+    protected JMenuBar menuBar = new JMenuBar(); //menu initialization
+    JScrollPane scrollPane = new JScrollPane(textArea); //scrollBar
 
-    //text area initialization
-    protected JTextArea textArea = new JTextArea();
-    //menu initialization
-    protected JMenuBar menuBar = new JMenuBar();
-
-    //these are the three options
+    //Menu options
     protected JMenu fileMenu = new JMenu("File");
     protected JMenu editMenu = new JMenu("Edit");
     protected JMenu helpMenu = new JMenu("Help");
 
     //options inside "File"
-    protected JMenuItem openItem = new JMenuItem("Open");
-    protected JMenuItem saveItem = new JMenuItem("Save");
-    protected JMenuItem exitItem = new JMenuItem("Exit");
+    protected JMenuItem openItem = new JMenuItem("Open          Ctrl+O");
+    protected JMenuItem saveItem = new JMenuItem("Save            Ctrl+S");
+    protected JMenuItem exitItem = new JMenuItem("Exit             Alt+F4");
+
+    //options inside "Edit"
+    protected JMenuItem undoItem = new JMenuItem("Undo     ");
+    protected JMenuItem copyItem = new JMenuItem("Copy     ");
+    protected JMenuItem pasteItem = new JMenuItem("Paste    ");
 
     EditorFrame() {
         this.setTitle("Text Editor");
