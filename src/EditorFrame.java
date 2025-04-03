@@ -30,8 +30,11 @@ public class EditorFrame extends JFrame implements ActionListener{
         this.setSize(600,600);
         this.setLocationRelativeTo(null); //Always spawns in the middle
 
-        //textArea declaration
-        this.add(textArea);
+        //We add the scrollPane always and set a padding on the textArea
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        textArea.setMargin(new Insets(10,5, 5, 5));
+        textArea.setFont(new Font("Helvetica", Font.PLAIN, 12));
+        this.add(scrollPane);
 
         //menu items
         this.setJMenuBar(menuBar);
