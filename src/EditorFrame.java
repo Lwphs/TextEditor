@@ -24,11 +24,11 @@ public class EditorFrame extends JFrame implements ActionListener{
     protected JMenuItem pasteItem = new JMenuItem("Paste    ");
 
     EditorFrame() {
-        this.setTitle("Text Editor");
+        this.setTitle("Lwphs Text Editor");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.setSize(500,500);
-        this.setLocationRelativeTo(null);
+        this.setSize(600,600);
+        this.setLocationRelativeTo(null); //Always spawns in the middle
 
         //textArea declaration
         this.add(textArea);
