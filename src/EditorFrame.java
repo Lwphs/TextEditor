@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.io.*;
 
 public class EditorFrame extends JFrame implements ActionListener{
 
@@ -41,6 +41,27 @@ public class EditorFrame extends JFrame implements ActionListener{
         openItem.addActionListener(this);
         saveItem.addActionListener(this);
         exitItem.addActionListener(this);
+    }
+
+    private void openOrSaveFile(int option) {
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(this);
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            if (option == 1) {
+                try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                    textArea.read(reader, null);
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(this, "Error opening file", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                    textArea.write(writer);
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(this, "Error saving file", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+        }
     }
 
     @Override
