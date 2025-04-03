@@ -36,17 +36,26 @@ public class EditorFrame extends JFrame implements ActionListener{
         textArea.setFont(new Font("Helvetica", Font.PLAIN, 12));
         this.add(scrollPane);
 
-        //menu items
+        //Menu items
         this.setJMenuBar(menuBar);
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
         menuBar.add(helpMenu);
+
+        //File items
         fileMenu.add(openItem);
         fileMenu.add(saveItem);
         fileMenu.add(exitItem);
+
+        //Edit items
+        editMenu.add(undoItem);
+        editMenu.add(copyItem);
+        editMenu.add(pasteItem);
+
         openItem.addActionListener(this);
         saveItem.addActionListener(this);
         exitItem.addActionListener(this);
+
     }
 
     private void openOrSaveFile(int option) {
